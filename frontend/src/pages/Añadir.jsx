@@ -24,25 +24,9 @@ export default function Añadir() {
     e.preventDefault()
     try {
       const res = await axios.post("http://localhost:8800/subir", producto);
-      // Credenciales correctas  
-      if (res.status === 200) {
-        Swal.fire({
-          title: 'Producto añadido',
-          text: 'El producto se ha anadido correctamente',
-          icon: 'success',
-          confirmButtonText: 'Continuar'
-        });
-        navigate("/");
-      }
+      navigate("/");
     } catch (err) {
       console.log(err)
-      if (err.response.status === 400) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'No se ha podido añadir el producto'
-        })
-      }
     }
   }
   return (
@@ -50,7 +34,7 @@ export default function Añadir() {
       <h1>Añadir un nuevo producto</h1>
       <form onSubmit={handleClick} className='form-group'>
         <input type="text" className='form-control my-4' placeholder='Nombre' onChange={handleChange} name='nombre' required />
-        <input type="number" className='form-control my-4' placeholder='Cantidad' onChange={handleChange} name='cantidad' min={0} required/>
+        <input type="number" className='form-control my-4' placeholder='Cantidad' onChange={handleChange} name='cantidad' min={0} required />
         <input type="number" className='form-control my-4' placeholder='Precio 1' onChange={handleChange} name='precio1' step={50} min={0} required />
         <input type="number" className='form-control my-4' placeholder='Precio 2' onChange={handleChange} name='precio2' step={50} min={0} required />
         <input value={producto.precio1 * producto.cantidad} type="number" className='form-control my-4' placeholder='Total' onChange={handleChange} name='total' step={50} min={0} required />

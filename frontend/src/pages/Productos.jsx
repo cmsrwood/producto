@@ -25,11 +25,6 @@ export default function Productos() {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(`http://localhost:8800/productos/${id}`)
-      Swal.fire({
-        title: "Deleted!",
-        text: "Your file has been deleted.",
-        icon: "success"
-      });
       navigate(0)
     } catch (err) {
       console.log(err)
